@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Access Denied</title>
+<link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.5.3/css/bootstrap.min.css} "/>
+</head>
+ 
+<body>
+    <div th:replace="fragments/header :: header"></div>
+ 
+    <h3 th:if="${message != null}" th:utext="${message}" style="color: red;"></h3>
+ 
+    <div th:if="${userInfo != null}" th:utext="${userInfo}"></div>
+    <div th:replace="fragments/footer :: footer"></div>
+</body>
+ 
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Index Page</title>
+    <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.5.3/css/bootstrap.css} "/>
+</head>
+<body>
+ <div th:replace="fragments/header :: header"></div>
+ <div class="container">
+ <div class="container">
+     <h1>Games</h1> <br/>
+     <h2><a class="btn btn-primary" href="new_add">Add Game</a></h2>
+     <br/>
+ </div>
+ <div>
+     <form th:action="@{/}">
+         Filter: 
+         <input type="text" name="keyword" th:value="${keyword}"/>
+         &nbsp;
+         <input class="btn btn-info" type="submit" value="Search"/>
+         &nbsp;
+         <input class="btn btn-secondary" type="button" value="Clear" onclick="clearFilter()" />
+     </form>
+ </div>
+ <div>&nbsp;</div>
+ <div>
+ <table class="table table-hover table-light">
+  <thead scope="row" class="thead-dark">
+   <tr>
+    <th scope="col">Game Id</th>
+    <th scope="col">Game Name</th>
+    <th scope="col">Game Description</th>
+    <th scope="col">Game Genre</th>
+    <th scope="col">Game Developer</th>
+    <th scope="col">Game Engine</th>
+    <th scope="col">Edit </th>
+    <th scope="col">Delete</th>
+   </tr>
+  </thead>
+  <tbody>
+   <tr th:each="game : ${getAllGames}">
+    <td th:text="${game.id}">ID</td>
+    <td th:text="${game.name}">Name</td>
+    <td th:text="${game.description}">Description</td>
+    <td th:text="${game.genre}">Genre</td>
+    <td th:text="${game.developer}">Developer</td>
+    <td th:text="${game.engine}">Engine</td>
+    <td><a class="btn btn-primary" th:href="@{'/edit/' + ${game.id}}">Edit</a></td>
+    <td><a class="btn btn-danger" th:href="@{'/delete/' + ${game.id}}">Delete</a></td>
+   </tr>
+  </tbody>
+ </table>
+ </div>
+</div>
+ <script type="text/javascript">
+     function clearFilter() {
+        window.location = '/';
+     }
+ </script>
+ <div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

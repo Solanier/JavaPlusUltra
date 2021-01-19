@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>CUSTOM-test</actionName>
+            <displayName>test</displayName>
+            <goals>
+                <goal>org.springframework.boot:spring-boot-maven-plugin:1.2.1.RELEASE:run</goal>
+                <goal>"-Ddatasource.url=jdbc:postgresql://&lt;databaseserver&gt;:5432/&lt;database&gt;?user=&lt;user&gt;&amp;password=&lt;password&gt;"</goal>
+                <goal>"-Dflyway.datasource.url=jdbc:postgresql://&lt;databaseserver&gt;:5432/&lt;database&gt;?user=&lt;user&gt;&amp;password=&lt;password&gt;"</goal>
+            </goals>
+            <properties>
+                <datasource.username>&lt;user&gt;</datasource.username>
+                <datasource.password>&lt;password&gt;</datasource.password>
+                <datasource.driverClassName>org.postgresql.Driver</datasource.driverClassName>
+                <datasource.dialect>postgresql</datasource.dialect>
+                <datasource.cdm.database>&lt;cdm database&gt;</datasource.cdm.database>
+                <datasource.cohort.schema>&lt;ohdsi database schema&gt;</datasource.cohort.schema>
+                <datasource.cdm.schema>unrestricted</datasource.cdm.schema>
+                <datasource.ohdsi.schema>ohdsi</datasource.ohdsi.schema>
+                <flyway.datasource.driverClassName>org.postgresql.Driver</flyway.datasource.driverClassName>
+                <flyway.datasource.username>&lt;username&gt;</flyway.datasource.username>
+                <flyway.datasource.password>&lt;password&gt;</flyway.datasource.password>
+                <flyway.locations>classpath:db/migration/postgresql</flyway.locations>
+                <flyway.schemas>ohdsi</flyway.schemas>
+            </properties>
+            <activatedProfiles>
+                <activatedProfile>webapi-postgresql</activatedProfile>
+            </activatedProfiles>
+        </action>
+        <action>
+            <actionName>CUSTOM-Run Maven</actionName>
+            <displayName>Run Maven</displayName>
+            <goals>
+                <goal>org.springframework.boot:spring-boot-maven-plugin:1.2.1.RELEASE:run</goal>
+                <goal>"-Ddatasource.url=jdbc:mysql://localhost:3306/springdb?user=root&amp;password="</goal>
+            </goals>
+            <activatedProfiles>
+                <activatedProfile>webapi-mysql</activatedProfile>
+            </activatedProfiles>
+        </action>
+    </actions>
